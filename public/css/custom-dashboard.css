@@ -1,0 +1,53 @@
+.logonav {
+    width: 100px;
+}
+
+.card {
+    border-radius: .5rem !important;
+    -webkit-box-shadow: 2px 6px 12px -5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 2px 6px 12px -5px rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 6px 12px -5px rgba(0, 0, 0, 0.25);
+}
+
+.card-site h5 {
+    margin-top: .75rem;
+    margin-bottom: .5rem;
+}
+
+.card-site img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 2rem;
+
+    -webkit-box-shadow: 3px 3px 12px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 12px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 12px -7px rgba(0, 0, 0, 0.75);
+}
+
+.card-text span {
+    font-weight: 600;
+}
+
+.form-inline .form-control {
+    width: 85% !important;
+}
+
+.short-info table {
+    margin-left: 100px;
+}
+
+.short-info .table td,
+.short-info .table th {
+    border-top: 0 !important;
+}
+
+.imgprofile img {
+    width: 250px;
+}
+
+.table td#head {
+    width: 160px;
+    color: #777 !important;
+}
