@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
+    <script src="{{ mix('js/app.js') }}" type="text/javascript" defer></script>
     <title>Dashboards</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,257 +14,44 @@
     <link rel="stylesheet" href="{!!asset('css/custom-dashboard.css')!!}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/bf3b9c3659.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div
-            class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-            <h5 class="my-0 mr-md-auto font-weight-normal"><img class="logonav" src="{!!asset('asset/logo-nav.png')!!}"
-                    alt=""></h5>
-            <nav class="my-2 my-md-0 mr-md-3">
-                <a class="p-2 text-dark" href="#">Home</a>
-                <a class="p-2 text-dark" href="#">Your Sites</a>
-                <a class="p-2 text-dark" href="#">Account</a>
-            </nav>
+    <?php $getName = session()->get('name'); $date = Carbon\Carbon::now(); $yearcurrent = Date('Y'); $time=Date('H:i');
+        if($time>'05:30' && $time<'10:00'){
+            $salam = 'Morning';
+        } elseif($time>='10:00' && $time < '15:00'){
+            $salam='Noon';
+        }elseif($time>'18:00'){
+            $salam='Afternoon';
+        }else{
+            $salam='Night';
+        }?>
+    <div id="App">
+        <div class="container">
+            <div
+                class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+                <h5 class="my-0 mr-md-auto font-weight-normal"><img class="logonav"
+                        src="{!!asset('asset/logo-nav.png')!!}" alt=""></h5>
+                <nav class="my-2 my-md-0 mr-md-3">
+                    <router-link to="/admin/home" class="p-2 text-dark">Home</router-link>
+                    <router-link to="/admin/your-sites" class="p-2 text-dark">Your Sites
+                    </router-link>
+                    <router-link to="/admin/account" class="p-2 text-dark">Account</router-link>
+                    <a href="/logout" class="p-2 text-dark">Logout</a>
+                </nav>
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h4>Hello Bintang, Good Afternoon</h4>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-lg-6 text-left">
-                <h3>Your Sites</h3>
-            </div>
-            <div class="col-lg-6 text-right">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-        {{-- Dataa --}}
-        <div class="row my-5">
-            <div class="col-lg-4 my-3">
-                <div class="card" style="">
-                    <div class="row">
-                        <div class="col-md-12 text-center card-site">
-                            <img class=""
-                                src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search-v2_297x176.jpg"
-                                s alt="Card image cap">
-                            <h5>Masera EDF</h5>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        <p class="card-text">
-                            Location <br>
-                            <span>Semakau, Singapore</span>
-                        </p>
-                        <p class="card-text">
-                            Commencement <br>
-                            <span>Aug, 2020</span>
-                        </p>
-                        <p class="card-text">
-                            Person in Charge <br>
-                            <span>ABC</span>
-                        </p>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Hello {{$getName}}, Good {{$salam}}</h4>
                 </div>
             </div>
-            <div class="col-lg-4 my-3">
-                <div class="card" style="">
-                    <div class="row">
-                        <div class="col-md-12 text-center card-site">
-                            <img class=""
-                                src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search-v2_297x176.jpg"
-                                s alt="Card image cap">
-                            <h5>Masera EDF</h5>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        <p class="card-text">
-                            Location <br>
-                            <span>Semakau, Singapore</span>
-                        </p>
-                        <p class="card-text">
-                            Commencement <br>
-                            <span>Aug, 2020</span>
-                        </p>
-                        <p class="card-text">
-                            Person in Charge <br>
-                            <span>ABC</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 my-3">
-                <div class="card" style="">
-                    <div class="row">
-                        <div class="col-md-12 text-center card-site">
-                            <img class=""
-                                src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search-v2_297x176.jpg"
-                                s alt="Card image cap">
-                            <h5>Masera EDF</h5>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        <p class="card-text">
-                            Location <br>
-                            <span>Semakau, Singapore</span>
-                        </p>
-                        <p class="card-text">
-                            Commencement <br>
-                            <span>Aug, 2020</span>
-                        </p>
-                        <p class="card-text">
-                            Person in Charge <br>
-                            <span>ABC</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 my-3">
-                <div class="card" style="">
-                    <div class="row">
-                        <div class="col-md-12 text-center card-site">
-                            <img class=""
-                                src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search-v2_297x176.jpg"
-                                s alt="Card image cap">
-                            <h5>Masera EDF</h5>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        <p class="card-text">
-                            Location <br>
-                            <span>Semakau, Singapore</span>
-                        </p>
-                        <p class="card-text">
-                            Commencement <br>
-                            <span>Aug, 2020</span>
-                        </p>
-                        <p class="card-text">
-                            Person in Charge <br>
-                            <span>ABC</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 my-3">
-                <div class="card" style="">
-                    <div class="row">
-                        <div class="col-md-12 text-center card-site">
-                            <img class=""
-                                src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search-v2_297x176.jpg"
-                                s alt="Card image cap">
-                            <h5>Masera EDF</h5>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        <p class="card-text">
-                            Location <br>
-                            <span>Semakau, Singapore</span>
-                        </p>
-                        <p class="card-text">
-                            Commencement <br>
-                            <span>Aug, 2020</span>
-                        </p>
-                        <p class="card-text">
-                            Person in Charge <br>
-                            <span>ABC</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 my-3">
-                <div class="card" style="">
-                    <div class="row">
-                        <div class="col-md-12 text-center card-site">
-                            <img class=""
-                                src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search-v2_297x176.jpg"
-                                s alt="Card image cap">
-                            <h5>Masera EDF</h5>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        <p class="card-text">
-                            Location <br>
-                            <span>Semakau, Singapore</span>
-                        </p>
-                        <p class="card-text">
-                            Commencement <br>
-                            <span>Aug, 2020</span>
-                        </p>
-                        <p class="card-text">
-                            Person in Charge <br>
-                            <span>ABC</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 my-3">
-                <div class="card" style="">
-                    <div class="row">
-                        <div class="col-md-12 text-center card-site">
-                            <img class=""
-                                src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search-v2_297x176.jpg"
-                                s alt="Card image cap">
-                            <h5>Masera EDF</h5>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        <p class="card-text">
-                            Location <br>
-                            <span>Semakau, Singapore</span>
-                        </p>
-                        <p class="card-text">
-                            Commencement <br>
-                            <span>Aug, 2020</span>
-                        </p>
-                        <p class="card-text">
-                            Person in Charge <br>
-                            <span>ABC</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 my-3">
-                <div class="card" style="">
-                    <div class="row">
-                        <div class="col-md-12 text-center card-site">
-                            <img class=""
-                                src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search-v2_297x176.jpg"
-                                s alt="Card image cap">
-                            <h5>Masera EDF</h5>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        <p class="card-text">
-                            Location <br>
-                            <span>Semakau, Singapore</span>
-                        </p>
-                        <p class="card-text">
-                            Commencement <br>
-                            <span>Aug, 2020</span>
-                        </p>
-                        <p class="card-text">
-                            Person in Charge <br>
-                            <span>ABC</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <router-view></router-view>
         </div>
     </div>
 

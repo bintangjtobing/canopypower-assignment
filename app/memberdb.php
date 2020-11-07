@@ -10,6 +10,6 @@ class memberdb extends Model
     protected $fillable = [
         'username',
         'password',
-        'name',
+        'name', 'image'
     ];
 }

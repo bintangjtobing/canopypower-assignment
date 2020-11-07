@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/sites', 'DashboardController@getSite');
+Route::get('/sites/{siteid}', 'DashboardController@getSiteid');
+Route::get('/list-sites', 'DashboardController@getList');
+Route::delete('/list-sites/{siteid}', 'DashboardController@deletesite');
+Route::get('/get-plan', 'DashboardController@getPlan');

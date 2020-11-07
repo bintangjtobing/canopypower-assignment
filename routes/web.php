@@ -27,3 +27,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isLogin'], function () {
         return view('dashboards');
     })->where('any', '.*');
 });
+
+Route::post('/add-new-site', 'DashboardController@addnewsite');
