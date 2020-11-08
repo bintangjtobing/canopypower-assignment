@@ -19,10 +19,10 @@ And the next is:
 - You can see on your browser by localhost:8000. It should be worked because on .env file i set it up to localhost, 127.0.0.1 with port 3306.
 
 Or if you confused and want to see my projects, i have been already set the project on my own hosting.
-- You can check it on [canopy.bintangtobing.com](https://canopytest.bintangtobing.com).
+- You can check it on [canopy.bintangtobing.com](https://canopy.bintangtobing.com).
 
 ## How it works?
-- You can login with your data by register your data by yourself or you can login it with username: admin, password: canopytest.
+- You can login it with username: admin, password: canopytest.
 - And then you will see the dashboards, and then you can go to Your Sites.
 - As your assignment, i've been already completed that, with you can add your website, update it and delete on Account page.
 
