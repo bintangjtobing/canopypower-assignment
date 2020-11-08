@@ -107,6 +107,7 @@
                 const config = {
                     headers: {
                         'content-type': 'multipart/form-data'
+
                     }
                 }
                 axios
