@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\sites;
 use App\plan;
+use Exception;
 
 class DashboardController extends Controller
 {
@@ -31,8 +32,8 @@ class DashboardController extends Controller
             ->join('plans', 'sites.plan_id', 'plans.id')
             ->where('sites.id', '=', $siteid)
             ->select('sites.*', 'plans.*', 'sites.id as siteid')
-            ->get();
-        return $list;
+            ->first();
+        return sites::find($siteid);
     }
     public function deletesite($siteid)
     {
@@ -79,5 +80,21 @@ class DashboardController extends Controller
         $site->save();
         // dd($site);
         // dd($request->all());
+    }
+    public function updatesite(sites $site)
+    {
+        // return response()->json($request->all());
+        $data = $this->getForm();
+        if (request()->hasFile("image")) {
+            $lamp = request()->file('image');
+            $data["thumb"] = time() . '.' . $lamp->getClientOriginalExtension();
+            request()->file('image')->move('media/sites/', $data["thumb"]);
+        }
+        $site->update($data);
+    }
+
+    public function getForm()
+    {
+        return request()->only("site_name", "location", "pic");
     }
 }

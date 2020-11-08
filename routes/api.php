@@ -22,3 +22,4 @@ Route::get('/sites/{siteid}', 'DashboardController@getSiteid');
 Route::get('/list-sites', 'DashboardController@getList');
 Route::delete('/list-sites/{siteid}', 'DashboardController@deletesite');
 Route::get('/get-plan', 'DashboardController@getPlan');
+Route::post('/sites/update/{site}', 'DashboardController@updatesite');

@@ -3,42 +3,47 @@
         <div class="row my-4">
             <div class="col-md-8 offset-2">
                 <form @submit.prevent="updateData" method="POST" enctype="multipart/form-data">
-                    <!-- <div class="row">
+                    <div class="row">
+                        <div class="col-md-12 my-2">
+                            <label for="">Your current image</label>
+                            <div class="mt-1">
+                                <img v-bind:src="'/media/sites/'+getS.thumb" v-if="getS.thumb && getS.thumb!==''"
+                                    class="figure-img img-fluid rounded" style="max-height:100px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12 my-2">
                             <label for="">Choose an cover image</label>
                             <input type="file" @change="imageSelected" class="form-control">
                         </div>
-                    </div> -->
-                    <!-- <div class="row">
+                    </div>
+                    <div class="row">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <div class="mt-1 ml-2">
-                                    <img v-bind:src="'/media/sites/'+form.thumb" class="figure-img img-fluid rounded"
+                                <div class="mt-1 ml-2" v-if="imagepreview">
+                                    <img :src="imagepreview" class="figure-img img-fluid rounded"
                                         style="max-height:100px;">
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row">
                         <div class="col-md-7 my-2">
                             <label for="">Site name</label>
-                            <input type="text" v-model="form.nama_situs" id="" class="form-control">
-                        </div>
-                        <div class="col-md-4 my-2">
-                            <label for="">Current Plan</label>
-                            <input type="text" v-model="form.plan_name" id="" class="form-control">
+                            <input type="text" v-model="getS.sitename" id="" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 my-2">
                             <label for="">Location</label>
-                            <input type="text" v-model="form.location" id="" class="form-control">
+                            <input type="text" v-model="getS.location" id="" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 my-2">
                             <label for="">Person in Charge</label>
-                            <input type="text" v-model="form.pic" id="" class="form-control">
+                            <input type="text" v-model="getS.pic" id="" class="form-control">
                         </div>
                     </div>
                     <div class="row">
@@ -58,12 +63,14 @@
     export default {
         data() {
             return {
-                form: {
+                getS: {
                     site_name: "",
                     location: "",
                     pic: "",
                     plan_name: ""
-                }
+                },
+                image: null,
+                imagepreview: null,
             }
         },
         created() {
@@ -74,21 +81,41 @@
                 axios
                     .get("/api/sites/" + this.$route.params.siteid)
                     .then(response => {
-                        this.form.nama_situs = response.data.sitename;
-                        this.form.location = response.data.location;
-                        this.form.pic = response.data.pic;
-                        this.form.plan_name = response.data.plan_name;
-
-                    });
+                        // json_encode(this.getS);
+                        this.getS.sitename = response.data.site_name;
+                        this.getS.location = response.data.location;
+                        this.getS.pic = response.data.pic;
+                        this.getS.plan_name = response.data.plan_name;
+                        this.getS.thumb = response.data.thumb;
+                        // console.log(this.getS);
+                    }).catch(err => console.log(err.response));
+            },
+            imageSelected(e) {
+                this.image = e.target.files[0];
+                let reader = new FileReader();
+                reader.readAsDataURL(this.image);
+                reader.onload = e => {
+                    this.imagepreview = e.target.result;
+                }
+            },
+            updateData() {
+                let dataU = new FormData();
+                dataU.append('image', this.image);
+                dataU.append('site_name', this.getS.sitename);
+                dataU.append('location', this.getS.location);
+                dataU.append('pic', this.getS.pic);
+                const config = {
+                    headers: {
+                        'content-type': 'multipart/form-data'
+                    }
+                }
+                axios
+                    .post('/api/sites/update/' + this.$route.params.siteid, dataU, config)
+                    .then(response => {
+                        console.log(this.dataU);
+                        this.$router.push('/admin/your-sites');
+                    }).catch(err => console.log(err.response));
             }
-            // imageSelected(e) {
-            // this.image = e.target.files[0];
-            // let reader = new FileReader();
-            // reader.readAsDataURL(this.image);
-            // reader.onload = e => {
-            // this.imagepreview = e.target.result;
-            // }
-            // },
         }
     }
 
