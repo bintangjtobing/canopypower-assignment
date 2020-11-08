@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 08 Nov 2020 pada 10.43
+-- Waktu pembuatan: 08 Nov 2020 pada 11.53
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.1
 
@@ -43,7 +43,8 @@ CREATE TABLE `memberdbs` (
 --
 
 INSERT INTO `memberdbs` (`id`, `username`, `image`, `password`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'bintang', '', '$2y$12$fq1aXRoFNfyp7WeOs4GyaehUVNOukIHOlQL8M7jfpKe2Kq9DiPiae', 'Bintang Tobing', NULL, NULL);
+(1, 'bintang', '', '$2y$12$fq1aXRoFNfyp7WeOs4GyaehUVNOukIHOlQL8M7jfpKe2Kq9DiPiae', 'Bintang Tobing', NULL, NULL),
+(2, 'admin', '', '$2y$12$arqG5st/UyM3HmtQerasu.avf0Xx3T/5O24x2aUoNk7VRjzFfad82', 'Administrator', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,10 @@ CREATE TABLE `sites` (
 --
 
 INSERT INTO `sites` (`id`, `plan_id`, `thumb`, `site_name`, `location`, `comdate`, `pic`, `created_at`, `updated_at`) VALUES
-(4, 1, '1604827238.jpg', 'Testing Data IISdsad', 'Medan II,we Indonesiaasd', '2020 Nov 08', 'ABCDqweEasd', '2020-11-07 18:58:43', '2020-11-08 09:20:38');
+(8, 1, '1604832704.jpg', 'Masera EDF', 'Semakau, Singapore', '2020 Nov 08', 'ABC', '2020-11-08 10:43:23', '2020-11-08 10:51:44'),
+(9, 2, '1604832689.jpeg', 'Batu Batu Resort', 'Johor Marine Park, Malaysia', '2020 Nov 08', 'DEF', '2020-11-08 10:44:01', '2020-11-08 10:51:29'),
+(10, 1, '1604832676.jpg', 'SAFRA Jurong', 'Jurong, Singapore', '2020 Nov 08', 'GHI', '2020-11-08 10:44:38', '2020-11-08 10:51:16'),
+(11, 2, '1604832655.jpeg', 'Telunas Private Island', 'Riau Islands, Indonesia', '2020 Nov 08', 'MNO', '2020-11-08 10:45:22', '2020-11-08 10:50:55');
 
 -- --------------------------------------------------------
 
@@ -193,7 +197,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `memberdbs`
 --
 ALTER TABLE `memberdbs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -211,7 +215,7 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT untuk tabel `sites`
 --
 ALTER TABLE `sites`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
